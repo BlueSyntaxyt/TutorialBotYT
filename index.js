@@ -78,25 +78,21 @@ bot.on("message", (msg) => {
 //NO
 
 bot.on("message", (message) => {
+  const quotes = require("./Quotes.json");
+
   if(message.author.bot) return;
 
   if(message.content.startsWith(prefix + "quote")) {
-    const quotes_file = require("./Quotes.json");
 
-    const quotes = quotes_file.Quotes;
-
-    var num = Math.floor(Math.random()*quotes.length);
+    var num = Math.floor(Math.random()*quotes.Quotes.length);
 
     let embed = new Discord.MessageEmbed()
-    .setTitle("QUOTE")
-    .setDescription(quotes[num].q + "\n- " + quotes[num].a)
-    .setFooter("I AM A BOT")
+    .setDescription(quotes.Quotes[num].q + "\n- " + quotes.Quotes[num].a)
     .setColor("RANDOM")
 
-    message.channel.send(embed);
-
-  }
-})
+    message.channel.send(embed)
+  };
+});
 
 bot.on("message", function (message) {
   var PlayerMute;
